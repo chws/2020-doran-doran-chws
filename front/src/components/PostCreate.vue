@@ -16,7 +16,7 @@
       no-resize
     />
     <v-btn
-      @click="createPost"
+      @click.prevent="createPost"
       class="float-right"
       color="amber accent-4"
       type="submit"
