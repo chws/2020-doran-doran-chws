@@ -8,6 +8,13 @@ group = 'com.grasshouse'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+task buildFrontEnd(type: Exec) {
+    workingDir "./front"
+    commandLine 'npm', 'install'
+    commandLine 'npm', 'run', 'build'
+}
+processResources.dependsOn 'buildFrontEnd'
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
