@@ -37,7 +37,10 @@ test {
 task buildFrontEnd(type: Exec) {
     workingDir "./front"
     commandLine 'npm', 'install'
-    commandLine 'npm', 'install', '-g', 'vue-cli'
+    commandLine 'npm', 'install', '-g', '@vue/cli'
+    commandLine 'node', '-v'
+    commandLine 'node', '-v'
+    commandLine 'node', '-v'
     commandLine 'npm', 'run', 'build'
 }
 processResources.dependsOn 'buildFrontEnd'
