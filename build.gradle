@@ -36,11 +36,11 @@ test {
 
 task buildFrontEnd(type: Exec) {
     workingDir "./front"
-    commandLine 'npm', 'install'
-    commandLine 'npm', 'install', '-g', '@vue/cli'
-    commandLine 'curl', '-o-', 'https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh', '|', 'bash'
-    commandLine 'export', 'NVM_DIR=\"/home/ubuntu/.nvm\"'
-    commandLine '[', '-s', '\"$NVM_DIR/nvm.sh\"',']', '&&', '.', '\"$NVM_DIR/nvm.sh\"'
+//    commandLine 'npm', 'install'
+//    commandLine 'npm', 'install', '-g', '@vue/cli'
+//    commandLine 'curl', '-o-', 'https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh', '|', 'bash'
+//    commandLine 'export', 'NVM_DIR=\"/home/ubuntu/.nvm\"'
+//    commandLine '[', '-s', '\"$NVM_DIR/nvm.sh\"',']', '&&', '.', '\"$NVM_DIR/nvm.sh\"'
     commandLine 'node', '-v'
     commandLine 'node', '-v'
     commandLine 'node', '-v'

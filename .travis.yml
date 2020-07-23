@@ -13,6 +13,12 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
+before_install:
+  - cd ./front
+  - npm install
+  - npm install -g @vue/cli
+  - cd ../
+
 # 푸시되었을 때 수행되는 명령어
 scipt: "./gradlew clean build"
 
