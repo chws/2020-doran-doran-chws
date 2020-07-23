@@ -23,38 +23,33 @@ public class CommentService {
     private final PostRepository postRepository;
 
     @Transactional
-    public Long createComment(Long postId, CommentCreateRequest commentRequest) {
-        Comment comment = convertToComment(postId, commentRequest);
+    public Long createComment(CommentCreateRequest request) {
+        Comment comment = convertToComment(request);
         commentRepository.save(comment);
         return comment.getId();
     }
 
-    private Comment convertToComment(Long postId, CommentCreateRequest commentRequest) {
-        Member member = memberRepository.findById(commentRequest.getMemberId())
+    private Comment convertToComment(CommentCreateRequest request) {
+        Member member = memberRepository.findById(request.getMemberId())
             .orElseThrow(MemberNotFoundException::new);
-        Post post = postRepository.findById(postId)
+        Post post = postRepository.findById(request.getPostId())
             .orElseThrow(PostNotFoundException::new);
         Double distance = post.getLocation()
-            .calculateDistance(commentRequest.getLocation());
+            .calculateDistance(request.getLocation());
 
         return Comment.builder()
             .author(member)
             .post(post)
-            .content(commentRequest.getContent())
+            .content(request.getContent())
             .distance(distance)
             .build();
     }
 
     @Transactional
-    public void deleteComment(Long postId, Long commentId) {
-        Comment comment = findCommentById(commentId);
-        Post post = postRepository.findById(postId)
-            .orElseThrow(PostNotFoundException::new);
-        post.removeComment(comment);
-    }
-
-    private Comment findCommentById(Long commentId) {
-        return commentRepository.findById(commentId)
+    public void deleteComment(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
             .orElseThrow(CommentNotFoundException::new);
+        Post post = comment.getPost();
+        post.removeComment(comment);
     }
 }
