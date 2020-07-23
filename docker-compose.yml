@@ -1,0 +1,13 @@
+# docker-compose.yml
+version: '3'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkinslocal
+    restart: always
+    volumes:
+      - ./jenkins_home:/var/jenkins_home #ubuntu의 ./jenkins_home 폴더에 continer의 /var/jenkins_home 을 마운트 한다.
+    ports:
+      - 8080:8080 #앞: 리눅스에서 받는 포트 (외부에서 요청하는 포트, 호스트 포트) 뒤: 컨테이너 포트
+    environment:
+      TZ: "Asia/Seoul"
