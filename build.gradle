@@ -33,3 +33,10 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task buildFrontEnd(type: Exec) {
+    workingDir "./front"
+    commandLine 'npm', 'install'
+    commandLine 'npm', 'run', 'build'
+}
+processResources.dependsOn 'buildFrontEnd'
