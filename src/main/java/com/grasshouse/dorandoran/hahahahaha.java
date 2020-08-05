@@ -7,4 +7,8 @@ public class hahahahaha {
     public hahahahaha(String awesome) {
         this.awesome = awesome;
     }
+
+    private void changeAwesome(String brilliant) {
+        this.awesome = brilliant;
+    }
 }
